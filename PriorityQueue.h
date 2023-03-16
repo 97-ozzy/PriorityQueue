@@ -16,8 +16,12 @@ private:
 public:
     PriorityQueue(int capacity);
     ~PriorityQueue();
-    void enqueue(int item);
-    int dequeue();
+
+    void add(int item);
+    int remove();
+
+    bool isFull();
+    int shiftItemsToInsert(int item);
     void print();
 };
 

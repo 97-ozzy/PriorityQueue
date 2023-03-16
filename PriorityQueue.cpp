@@ -16,8 +16,8 @@ PriorityQueue::~PriorityQueue() {
     delete[] array;
 }
 
-void PriorityQueue::enqueue(int item) {
-    if (size == capacity) {
+void PriorityQueue::add(int item) {
+    if (isFull()) {
         resize();
     }
     if (size == 0) {
@@ -25,18 +25,12 @@ void PriorityQueue::enqueue(int item) {
         size++;
         return;
     }
-    int i;
-    for (i = size-1; i >= 0; i--) {
-        if(item < array[i]) {
-            array[i+1] = array[i];
-        }
-        else break;
-    }
-    array[i+1] = item;
+    int i = shiftItemsToInsert(item);
+    array[i] = item;
     size++;
 }
 
-int PriorityQueue::dequeue() {
+int PriorityQueue::remove() {
     if (size == 0) {
         throw runtime_error("Queue is empty");
     }
@@ -65,4 +59,19 @@ void PriorityQueue::resize() {
     capacity = newCapacity;
     delete [] array;
     array = newArr;
+}
+
+int PriorityQueue:: shiftItemsToInsert(int item){
+    int i;
+    for (i = size-1; i >= 0; i--) {
+        if(item < array[i]) {
+            array[i+1] = array[i];
+        }
+        else break;
+    }
+    return i+1;
+}
+
+bool PriorityQueue::isFull() {
+    return size == capacity;
 }

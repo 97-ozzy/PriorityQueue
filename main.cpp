@@ -4,13 +4,13 @@ using namespace std;
 
 int main() {
     PriorityQueue q(5);
-    q.enqueue(30);
-    q.enqueue(20);
-    q.enqueue(10);
-    q.enqueue(60);
-    q.enqueue(500);
-    q.enqueue(80);
-    q.dequeue();
+    q.add(30);
+    q.add(20);
+    q.add(10);
+    q.add(60);
+    q.add(500);
+    q.add(80);
+    q.remove();
 
 
     q.print();
